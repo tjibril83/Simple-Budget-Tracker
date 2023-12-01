@@ -63,7 +63,6 @@ while True:
     else:
         answer = input("Would you like to perform another operation? (yes/no): ")
 
-    # answer = input("Do you want to perform another transaction? (yes/no): ")
     if answer.lower() not in ("yes", "y"):
         break
 
