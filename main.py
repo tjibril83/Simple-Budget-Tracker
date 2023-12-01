@@ -7,10 +7,13 @@ budget = {
 
 # Function to handle user input for operation
 def get_operation():
-    operation = input("Which operation do you want to perform? (deposit/withdraw): ")
-    if operation not in ("deposit", "withdraw"):
+    operation = input("Which operation do you want to perform? (deposit/withdraw/balance): ")
+    if operation == "balance":
+        view_budget()
+    if operation not in ("deposit", "withdraw","balance"): 
         print(f"Invalid operation '{operation}'. Please try again.")
         return None
+    
     return operation
 
 # Function to add income to budget
@@ -40,14 +43,27 @@ while True:
     if not operation:
         continue
 
-    amount = float(input(f"How much do you want to {operation}? "))
+    # if operation == "balance":
+    #     view_budget()
+
+    
 
     if operation == "deposit":
+        amount = float(input(f"How much do you want to {operation}? "))
         add_income(amount)
     elif operation == "withdraw":
+        amount = float(input(f"How much do you want to {operation}? "))
         add_expense(amount)
+    elif operation == "balance":
+        view_budget()
+   
 
-    answer = input("Do you want to perform another transaction? (yes/no): ")
+    if operation in ("balance"):
+        answer = input("Do you want to perform another transaction? (yes/no): ")
+    else:
+        answer = input("Would you like to perform another operation? (yes/no): ")
+
+    # answer = input("Do you want to perform another transaction? (yes/no): ")
     if answer.lower() not in ("yes", "y"):
         break
 
